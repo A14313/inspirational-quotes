@@ -7,8 +7,22 @@
 		<title>Inpirational Quotes using API</title>
 		<link rel="stylesheet" href="scss/main.scss" />
 		<script src="js/app.js" type="module" defer></script>
+		<script
+			src="https://kit.fontawesome.com/e1bb752819.js"
+			crossorigin="anonymous"
+			defer
+		></script>
 	</head>
 	<body>
+		<div class="viewport-checker">
+			<div class="container">
+				<h1>This current screen size is not supported</h1>
+				<p>
+					Please view this website with at least 320 screen
+					resolution.
+				</p>
+			</div>
+		</div>
 		<main class="main grid">
 			<div class="card">
 				<div class="quote-number-container">
@@ -29,6 +43,20 @@
 						Get new
 					</button>
 					<button id="copyBtn" class="btn btn--solid">Copy</button>
+				</div>
+			</div>
+			<div id="hintContainer" class="hint-container">
+				<i id="closeBtn" class="fa-solid fa-circle-xmark"></i>
+				<div class="hint-group">
+					<div class="hint-img">
+						<img src="assets/enter.png" alt="" />
+					</div>
+					<div class="hint-message">
+						<p>
+							Press <em>enter</em> or <em>return</em> to get new
+							quote
+						</p>
+					</div>
 				</div>
 			</div>
 		</main>

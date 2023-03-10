@@ -5,6 +5,8 @@ const quoteCount = document.querySelector('#quoteCount');
 
 const newQuoteBtn = document.querySelector('#newQuoteBtn');
 const copyBtn = document.querySelector('#copyBtn');
+const hintContainer = document.querySelector('#hintContainer');
+const closeBtn = document.querySelector('#closeBtn');
 
 const getApi = async () => {
 	try {
@@ -12,7 +14,7 @@ const getApi = async () => {
 		const fetchApi = await fetch(apiUrl);
 		const parsedData = await fetchApi.json();
 		return parsedData;
-		//array of objects ang nilalabas neto based sa
+		// array of objects ang nilalabas neto based sa
 		// structure ng API itself
 	} catch (e) {
 		console.log(e);
@@ -69,6 +71,7 @@ newQuoteBtn.addEventListener('click', getNewQuoteFn);
 //For shortcut keys
 window.addEventListener('keydown', (e) => {
 	switch (e.code) {
+		case 'NumpadEnter':
 		case 'Enter':
 			getNewQuoteFn();
 			break;
@@ -81,3 +84,29 @@ window.addEventListener('keydown', (e) => {
 });
 
 // navigator.clipboard.writeText(data.quote);
+
+const showHintPromise = () => {
+	return new Promise((resolve, reject) => {
+		if (window.innerWidth >= 320) {
+			setTimeout(() => {
+				hintContainer.classList.add('show');
+				resolve();
+			}, 2000);
+		} else {
+			reject('The current screen size is less than 320px');
+		}
+	});
+};
+
+const showHint = async () => {
+	try {
+		await showHintPromise();
+		closeBtn.addEventListener('click', () => {
+			hintContainer.classList.remove('show');
+		});
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+showHint();
