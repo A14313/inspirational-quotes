@@ -1,0 +1,85 @@
+@import 'breakpoints';
+@import 'colors';
+@import 'fonts';
+@import 'resets';
+
+:root {
+	--default-border-radius: 0.4em;
+}
+
+.btn {
+	font-family: inherit;
+	outline: none;
+	border: none;
+	background: transparent;
+	border-radius: var(--default-border-radius);
+	cursor: pointer;
+	padding: 0.8em 2em;
+	font-size: var(--fs-300);
+
+	&--hollow {
+		border: 1px solid var(--clr-btn);
+	}
+
+	&--solid {
+		background-color: var(--clr-btn);
+	}
+}
+
+body {
+	background-color: #ddd;
+}
+
+.card {
+	background-color: white;
+	width: 90%;
+	max-width: 500px;
+	margin-inline: auto;
+
+	padding: 1em;
+	border-radius: var(--default-border-radius);
+	display: flex;
+	flex-direction: column;
+	gap: 0.6em;
+
+	.quote-container {
+		#quote {
+			font-size: var(--fs-500);
+		}
+	}
+
+	.author-container {
+		margin-top: 1em;
+
+		#author {
+			font-style: normal;
+			&::before {
+				content: '--';
+			}
+		}
+	}
+
+	.quote-number-container {
+		font-size: var(--fs-300);
+	}
+
+	.button-container {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.5em;
+	}
+}
+
+.main {
+	height: 100dvh;
+	// border: 5px solid red;
+
+	&.grid {
+		display: grid;
+		place-items: center;
+	}
+}
+
+#copyBtn {
+	display: none;
+}

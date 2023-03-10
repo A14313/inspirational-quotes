@@ -1,0 +1,23 @@
+:root {
+	--clr-gray-300: hsl(0, 0%, 53%);
+	--clr-gray-400: hsl(0, 0%, 30%);
+
+	--clr-btn: hsl(204, 83%, 65%);
+}
+
+#quote {
+	color: var(--clr-gray-400);
+}
+
+#author,
+.quote-number-container {
+	color: var(--clr-gray-300);
+}
+
+.btn {
+	color: white;
+}
+
+.btn--hollow {
+	color: var(--clr-gray-300);
+}

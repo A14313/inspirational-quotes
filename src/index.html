@@ -9,19 +9,26 @@
 		<script src="js/app.js" type="module" defer></script>
 	</head>
 	<body>
-		<main class="main">
+		<main class="main grid">
 			<div class="card">
-				<div class="quote">
-					<p id="quote">Loading...</p>
-				</div>
-				<div class="author">
-					<p id="author">Loading...</p>
-				</div>
-				<div class="quote-number">
+				<div class="quote-number-container">
 					<p>
 						<span id="quoteID">Loading...</span> /
 						<span id="quoteCount">Loading...</span>
 					</p>
+				</div>
+				<div class="quote-container">
+					<p id="quote">Loading...</p>
+				</div>
+				<div class="author-container">
+					<p id="author">Loading...</p>
+				</div>
+
+				<div class="button-container">
+					<button id="newQuoteBtn" class="btn btn--hollow">
+						Get new
+					</button>
+					<button id="copyBtn" class="btn btn--solid">Copy</button>
 				</div>
 			</div>
 		</main>

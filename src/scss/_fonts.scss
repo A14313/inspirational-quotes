@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,400;0,500;1,200&display=swap');
+
+:root {
+	--fs-300: 0.688rem; //11px
+	--fs-400: 0.875rem; //14px
+	--fs-500: 1rem; //14px
+}
+
+body {
+	font-family: 'Raleway', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: var(--fs-400);
+}
