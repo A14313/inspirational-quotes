@@ -8,6 +8,7 @@ const copyBtn = document.querySelector('#copyBtn');
 const hintContainer = document.querySelector('#hintContainer');
 const closeBtn = document.querySelector('#closeBtn');
 const showHintBtn = document.querySelector('#showHintBtn');
+const copyNotifDiv = document.querySelector('#copyNotifDiv');
 
 const getApi = async () => {
 	try {
@@ -26,6 +27,8 @@ const getRandomQuote = (data) => {
 	return new Promise((resolve, reject) => {
 		if (data) {
 			let randomIndex = Math.floor(Math.random() * data.length);
+			// //pang testing lang
+			// let randomIndex = 0;
 			const author = data[randomIndex].author;
 			const quote = data[randomIndex].text;
 
@@ -56,11 +59,27 @@ const appendInformation = async (data) => {
 		authorParagraph.textContent = data.author;
 		quoteID.textContent = data.number;
 		quoteCount.textContent = data.quotesCount;
+		// console.log(data);
+
 		return data;
 	} catch (e) {
 		console.log(e);
 	}
 };
+
+// let copyFn = (data) => {
+// 	// console.log(data);
+// 	const copycopy = () => {
+// 		console.log('Copied');
+// 		navigator.clipboard.writeText(data.quote);
+// 	};
+// 	copyBtn.addEventListener('click', copycopy);
+// 	setTimeout(() => {
+// 		copyBtn.removeEventListener('click', copycopy);
+// 	}, 5000);
+// };
+
+// copyFn();
 
 const getNewQuoteFn = () => {
 	getApi().then(getRandomQuote).then(appendInformation);
@@ -77,7 +96,9 @@ window.addEventListener('keydown', (e) => {
 			getNewQuoteFn();
 			break;
 		case 'KeyC':
-			console.log('Key C');
+			//Working on this shortcut
+			// console.log('Key C');
+			// copyFn();
 			break;
 		default:
 			return "There's no shortcut for that key";
