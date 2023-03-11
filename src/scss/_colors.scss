@@ -3,6 +3,8 @@
 	--clr-gray-400: hsl(0, 0%, 30%);
 
 	--clr-btn: hsl(204, 83%, 65%);
+	--clr-accent: hsl(204, 88%, 45%);
+	--clr-focus-state: rgb(247, 172, 33);
 }
 
 #quote {
@@ -14,10 +16,18 @@
 	color: var(--clr-gray-300);
 }
 
-.btn {
+.btn__normal {
 	color: white;
 }
 
-.btn--hollow {
+.btn__normal--hollow {
 	color: var(--clr-gray-300);
+}
+
+.btn__normal--solid {
+	background-color: var(--clr-btn) !important;
+}
+
+#showHintBtn {
+	color: var(--clr-accent);
 }

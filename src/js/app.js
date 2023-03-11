@@ -7,6 +7,7 @@ const newQuoteBtn = document.querySelector('#newQuoteBtn');
 const copyBtn = document.querySelector('#copyBtn');
 const hintContainer = document.querySelector('#hintContainer');
 const closeBtn = document.querySelector('#closeBtn');
+const showHintBtn = document.querySelector('#showHintBtn');
 
 const getApi = async () => {
 	try {
@@ -85,6 +86,11 @@ window.addEventListener('keydown', (e) => {
 
 // navigator.clipboard.writeText(data.quote);
 
+showHintBtn.addEventListener('click', () => {
+	hintContainer.classList.add('show');
+	showHintBtn.classList.remove('show');
+});
+
 const showHintPromise = () => {
 	return new Promise((resolve, reject) => {
 		if (window.innerWidth >= 320) {
@@ -103,6 +109,7 @@ const showHint = async () => {
 		await showHintPromise();
 		closeBtn.addEventListener('click', () => {
 			hintContainer.classList.remove('show');
+			showHintBtn.classList.add('show');
 		});
 	} catch (e) {
 		console.log(e);

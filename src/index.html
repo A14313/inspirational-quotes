@@ -39,24 +39,39 @@
 				</div>
 
 				<div class="button-container">
-					<button id="newQuoteBtn" class="btn btn--hollow">
+					<button
+						id="newQuoteBtn"
+						class="btn__normal btn__normal--hollow"
+					>
 						Get new
 					</button>
-					<button id="copyBtn" class="btn btn--solid">Copy</button>
+					<button id="copyBtn" class="btn__normal btn__normal--solid">
+						Copy
+					</button>
 				</div>
 			</div>
-			<div id="hintContainer" class="hint-container">
-				<i id="closeBtn" class="fa-solid fa-circle-xmark"></i>
-				<div class="hint-group">
-					<div class="hint-img">
-						<img src="assets/enter.png" alt="" />
+			<div class="hint-div">
+				<div id="hintContainer" class="hint-container">
+					<i id="closeBtn" class="fa-solid fa-circle-xmark"></i>
+					<div class="hint-title-container">
+						<p class="hint-title">Keyboard shortcut</p>
 					</div>
-					<div class="hint-message">
-						<p>
-							Press <em>enter</em> or <em>return</em> to get new
-							quote
-						</p>
+					<div class="hint-group">
+						<div class="hint-img">
+							<img src="assets/enter.png" alt="" />
+						</div>
+						<div class="hint-message">
+							<p>
+								Press <em>enter</em> or <em>return</em> to get
+								new quote
+							</p>
+						</div>
 					</div>
+				</div>
+				<div class="hint-show-button-div">
+					<button id="showHintBtn" class="btn__transparent">
+						Show keyboard shortcuts
+					</button>
 				</div>
 			</div>
 		</main>
