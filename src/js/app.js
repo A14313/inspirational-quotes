@@ -105,8 +105,6 @@ window.addEventListener('keydown', (e) => {
 	}
 });
 
-// navigator.clipboard.writeText(data.quote);
-
 showHintBtn.addEventListener('click', () => {
 	hintContainer.classList.add('show');
 	showHintBtn.classList.remove('show');
