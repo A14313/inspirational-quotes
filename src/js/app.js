@@ -67,19 +67,11 @@ const appendInformation = async (data) => {
 	}
 };
 
-// let copyFn = (data) => {
-// 	// console.log(data);
-// 	const copycopy = () => {
-// 		console.log('Copied');
-// 		navigator.clipboard.writeText(data.quote);
-// 	};
-// 	copyBtn.addEventListener('click', copycopy);
-// 	setTimeout(() => {
-// 		copyBtn.removeEventListener('click', copycopy);
-// 	}, 5000);
-// };
+const copyFn = () => {
+	console.log(quoteParagraph.innerHTML);
+};
 
-// copyFn();
+copyFn();
 
 const getNewQuoteFn = () => {
 	getApi().then(getRandomQuote).then(appendInformation);
