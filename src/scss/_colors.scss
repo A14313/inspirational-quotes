@@ -24,8 +24,25 @@
 	color: var(--clr-gray-300);
 }
 
+.btn__normal--hollow.active {
+	background-color: var(--clr-btn) !important;
+	color: white;
+}
+
+// Gawin mo tong hover na to sa hollow buttons
+// except pag naka disabled
+.btn__normal--hollow:hover:not(:disabled) {
+	background-color: var(--clr-btn) !important;
+	color: white;
+}
+
 .btn__normal--solid {
 	background-color: var(--clr-btn) !important;
+}
+
+.btn__normal--solid:hover {
+	background-color: white !important;
+	color: var(--clr-gray-300);
 }
 
 #showHintBtn {

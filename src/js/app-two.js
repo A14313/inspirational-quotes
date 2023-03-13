@@ -5,12 +5,27 @@ const quoteCount = document.querySelector('#quoteCount');
 
 const newQuoteBtn = document.querySelector('#newQuoteBtn');
 const copyBtn = document.querySelector('#copyBtn');
+const speakBtn = document.querySelector('#speakBtn');
 const hintContainer = document.querySelector('#hintContainer');
 const closeBtn = document.querySelector('#closeBtn');
 const showHintBtn = document.querySelector('#showHintBtn');
 const copyNotifDiv = document.querySelector('#copyNotifDiv');
 
 const signature = `Copied from Inspirational Quotes Web app\nlink: https://a14313.github.io/inspirational-quotes/dist/`;
+
+// Prevent defaults for buttons
+
+newQuoteBtn.addEventListener('mousedown', (e) => {
+	e.preventDefault();
+	// I prevented the default, to remove the default focus after clicked
+});
+copyBtn.addEventListener('mousedown', (e) => {
+	e.preventDefault();
+});
+
+speakBtn.addEventListener('mousedown', (e) => {
+	e.preventDefault();
+});
 
 const processRandomQuote = (parsedData) => {
 	// Based sa structure ng API, Array of objects sya
@@ -67,6 +82,9 @@ const getRandomQuote = () => {
 		.catch(onError);
 };
 
+getRandomQuote();
+// ************************
+
 const copy = () => {
 	navigator.clipboard.writeText(
 		`${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`
@@ -77,10 +95,35 @@ const copy = () => {
 		copyNotifDiv.classList.remove('show');
 	}, 2000);
 };
-
 copyBtn.addEventListener('click', copy);
+newQuoteBtn.addEventListener('click', getRandomQuote);
 
-getRandomQuote();
+const speak = () => {
+	let quote = `${quoteParagraph.textContent}`;
+	let author = `by ${authorParagraph.textContent}`;
+	let utteranceQuote = new SpeechSynthesisUtterance(quote);
+	let utteranceAuthor = new SpeechSynthesisUtterance(author);
+	utteranceQuote.pitch = 1;
+	utteranceQuote.rate = 0.8;
+	utteranceAuthor.pitch = 1;
+	utteranceAuthor.rate = 0.8;
+
+	speakBtn.classList.add('active');
+	speakBtn.disabled = true;
+	newQuoteBtn.disabled = true;
+
+	speechSynthesis.speak(utteranceQuote);
+	utteranceQuote.addEventListener('end', () => {
+		setTimeout(() => {
+			speechSynthesis.speak(utteranceAuthor);
+			speakBtn.classList.remove('active');
+			newQuoteBtn.disabled = false;
+			speakBtn.disabled = false;
+		}, 500);
+	});
+};
+
+speakBtn.addEventListener('click', speak);
 
 //Shortcut buttons
 window.addEventListener('keydown', (e) => {
@@ -92,12 +135,13 @@ window.addEventListener('keydown', (e) => {
 		case 'KeyC':
 			copy();
 			break;
+		case 'KeyS':
+			speak();
+			break;
 		default:
 			return 'No shortcut for that key';
 	}
 });
-
-newQuoteBtn.addEventListener('click', getRandomQuote);
 
 // FOR SHORCUT HINTS
 showHintBtn.addEventListener('click', () => {
