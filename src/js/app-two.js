@@ -16,6 +16,8 @@ const processRandomQuote = (parsedData) => {
 	// Based sa structure ng API, Array of objects sya
 	// so ang nirereturn neto array of objects [{},{}]
 	const randomID = Math.floor(Math.random() * parsedData.length);
+	// Pang testing
+	// const randomID = 937;
 	if (parsedData[randomID].author === null) {
 		return {
 			quote: parsedData[randomID].text,
