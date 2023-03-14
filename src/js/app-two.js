@@ -14,19 +14,36 @@ const copyNotifDiv = document.querySelector('#copyNotifDiv');
 const signature = `Copied from Inspirational Quotes Web app\nlink: https://a14313.github.io/inspirational-quotes/dist/`;
 
 // Prevent defaults for buttons
-
-newQuoteBtn.addEventListener('mousedown', (e) => {
-	e.preventDefault();
-	// I prevented the default, to remove the default focus after clicked
+[newQuoteBtn, copyBtn, speakBtn].forEach((el) => {
+	el.addEventListener('mousedown', (e) => {
+		e.preventDefault();
+		// I prevented the default, to remove the default focus after clicked
+	});
 });
-copyBtn.addEventListener('mousedown', (e) => {
-	e.preventDefault();
-});
+//******************************* */
 
-speakBtn.addEventListener('mousedown', (e) => {
-	e.preventDefault();
-});
+//Shortcut keys
+const invokeShortcuts = (e) => {
+	switch (e.code) {
+		case 'NumpadEnter':
+		case 'Enter':
+			getRandomQuote();
+			break;
+		case 'KeyC':
+			copy();
+			break;
+		case 'KeyS':
+			speak();
+			break;
+		default:
+			return 'No shortcut for that key';
+	}
+};
+window.addEventListener('keydown', invokeShortcuts);
 
+//******************************* */
+
+//This is for the processing of API and a randomQuote
 const processRandomQuote = (parsedData) => {
 	// Based sa structure ng API, Array of objects sya
 	// so ang nirereturn neto array of objects [{},{}]
@@ -56,8 +73,10 @@ const appendInformation = (parsedData) => {
 	quoteID.textContent = parsedData.id;
 	quoteCount.textContent = parsedData.quotesCount;
 
-	newQuoteBtn.textContent = 'Get new';
+	newQuoteBtn.innerHTML =
+		'<span class="btn__normal__title">Get new</span><i class="fa-solid fa-arrow-rotate-right"></i>';
 	newQuoteBtn.classList.remove('loading-state');
+	window.addEventListener('keydown', invokeShortcuts);
 };
 
 const onError = (e) => {
@@ -69,6 +88,7 @@ const getRandomQuote = () => {
 	// loading muna ang state ng button
 	newQuoteBtn.textContent = 'Loading...';
 	newQuoteBtn.classList.add('loading-state');
+	window.removeEventListener('keydown', invokeShortcuts);
 	// ******
 
 	//Fetching api
@@ -83,8 +103,9 @@ const getRandomQuote = () => {
 };
 
 getRandomQuote();
-// ************************
+//******************************* */
 
+// Copy button function
 const copy = () => {
 	navigator.clipboard.writeText(
 		`${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`
@@ -95,9 +116,8 @@ const copy = () => {
 		copyNotifDiv.classList.remove('show');
 	}, 2000);
 };
-copyBtn.addEventListener('click', copy);
-newQuoteBtn.addEventListener('click', getRandomQuote);
 
+// Speak button function
 const speak = () => {
 	let quote = `${quoteParagraph.textContent}`;
 	let author = `by ${authorParagraph.textContent}`;
@@ -111,6 +131,7 @@ const speak = () => {
 	speakBtn.classList.add('active');
 	speakBtn.disabled = true;
 	newQuoteBtn.disabled = true;
+	window.removeEventListener('keydown', invokeShortcuts);
 
 	speechSynthesis.speak(utteranceQuote);
 	utteranceQuote.addEventListener('end', () => {
@@ -119,29 +140,21 @@ const speak = () => {
 			speakBtn.classList.remove('active');
 			newQuoteBtn.disabled = false;
 			speakBtn.disabled = false;
+			window.addEventListener('keydown', invokeShortcuts);
 		}, 500);
 	});
 };
 
-speakBtn.addEventListener('click', speak);
+//******************************* */
 
-//Shortcut buttons
-window.addEventListener('keydown', (e) => {
-	switch (e.code) {
-		case 'NumpadEnter':
-		case 'Enter':
-			getRandomQuote();
-			break;
-		case 'KeyC':
-			copy();
-			break;
-		case 'KeyS':
-			speak();
-			break;
-		default:
-			return 'No shortcut for that key';
-	}
-});
+// Button event listeners
+copyBtn.addEventListener('click', copy);
+speakBtn.addEventListener('click', speak);
+newQuoteBtn.addEventListener('click', getRandomQuote);
+
+//******************************* */
+//******************************* */
+//******************************* */
 
 // FOR SHORCUT HINTS
 showHintBtn.addEventListener('click', () => {

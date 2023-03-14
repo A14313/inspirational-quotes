@@ -5,6 +5,7 @@
 
 :root {
 	--default-border-radius: 0.4em;
+	--border-radius-circle: 50%;
 	--transition-speed-slow: 700ms;
 	--transition-speed-normal: 500ms;
 	--transition-delay-normal: 320ms;
@@ -52,18 +53,47 @@ body {
 	border: none;
 	background: transparent;
 
-	border-radius: var(--default-border-radius);
 	box-shadow: 4px 3px 20px 2px hsla(0, 0%, 40%, 0);
-
 	cursor: pointer;
-	padding: 0.8em 2em;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
 	position: relative;
 	transition: font-weight var(--transition-speed-slow) ease,
 		box-shadow var(--transition-speed-slow) ease,
 		opacity var(--transition-speed-normal) ease,
 		border var(--transition-speed-normal) ease,
 		background-color var(--transition-speed-normal) ease,
-		color var(--transition-speed-normal) ease;
+		color var(--transition-speed-normal) ease,
+		border-radius var(--transition-speed-normal) ease,
+		padding var(--transition-speed-normal) ease;
+
+	border-radius: var(--border-radius-circle);
+	padding: 0.7em;
+	aspect-ratio: 1 / 1;
+
+	@include mediaQuery(sm) {
+		border-radius: var(--default-border-radius);
+		padding: 0.8em 2em;
+		aspect-ratio: unset;
+	}
+
+	&__title {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		transition: opacity var(--transition-speed-normal) ease
+				var(--transition-delay-normal),
+			position var(--transition-speed-normal) ease
+				var(--transition-delay-normal);
+		@include mediaQuery(sm) {
+			opacity: 1;
+			visibility: visible;
+			position: static;
+		}
+	}
 
 	&:hover:not(:disabled) {
 		box-shadow: 4px 3px 20px 2px hsla(0, 0%, 40%, 0.4);
@@ -239,6 +269,7 @@ body {
 
 	.copy-notif-div {
 		color: white;
+		text-align: center;
 		background-color: hsla(0, 0%, 40%);
 		border-radius: var(--default-border-radius);
 
