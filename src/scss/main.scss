@@ -61,8 +61,7 @@ body {
 	align-items: center;
 
 	position: relative;
-	transition: font-weight var(--transition-speed-slow) ease,
-		box-shadow var(--transition-speed-slow) ease,
+	transition: box-shadow var(--transition-speed-slow) ease,
 		opacity var(--transition-speed-normal) ease,
 		border var(--transition-speed-normal) ease,
 		background-color var(--transition-speed-normal) ease,
@@ -78,6 +77,20 @@ body {
 		border-radius: var(--default-border-radius);
 		padding: 0.8em 2em;
 		aspect-ratio: unset;
+	}
+
+	.svgIcon {
+		width: 18px;
+		height: 18px;
+		object-fit: cover;
+		transition: fill var(--transition-speed-normal) ease,
+			width var(--transition-speed-normal) ease,
+			height var(--transition-speed-normal) ease;
+
+		@include mediaQuery(sm) {
+			width: 16px;
+			height: 16px;
+		}
 	}
 
 	&__title {
@@ -262,7 +275,7 @@ body {
 		gap: 0.5em;
 		isolation: isolate;
 
-		i {
+		.svgIcon {
 			margin-inline-start: 0.3em;
 		}
 	}
@@ -317,9 +330,15 @@ body {
 .hint {
 	&-div {
 		position: absolute;
-		bottom: 10%;
-		right: 0px;
+		bottom: 2%;
+		right: 0;
 		width: 100%;
+		transition: bottom var(--transition-delay-normal) ease
+			var(--transition-delay-normal);
+
+		@include mediaQuery(sm) {
+			bottom: 5%;
+		}
 	}
 
 	&-show-button-div {
@@ -347,7 +366,6 @@ body {
 		position: absolute;
 		bottom: 10%;
 		right: 10px;
-		// width: 60%;
 
 		background-color: hsla(0, 0%, 40%, 0.14);
 		border-radius: var(--default-border-radius);
@@ -367,16 +385,17 @@ body {
 
 		@include mediaQuery(sm) {
 			padding: 1.3em 1em;
-			width: auto;
 			transform: translateX(-13%);
 			right: 5%;
 		}
 
-		.fa-circle-xmark {
+		.circle-xmark {
 			position: absolute;
 			top: -5px;
 			right: -5px;
 			font-size: 20px;
+			width: 20px;
+			height: 20px;
 			z-index: 99;
 			cursor: pointer;
 
@@ -386,11 +405,11 @@ body {
 		}
 
 		@media (hover: hover) {
-			.fa-circle-xmark {
+			.circle-xmark {
 				opacity: 0;
 				pointer-events: none;
 			}
-			&:hover .fa-circle-xmark {
+			&:hover .circle-xmark {
 				opacity: 1;
 				pointer-events: auto;
 			}
@@ -434,8 +453,13 @@ body {
 
 	&-img {
 		width: 10%;
-		width: 20px;
-		height: 20px;
+		width: 16px;
+		height: 16px;
+
+		@include mediaQuery(sm) {
+			width: 18px;
+			height: 18px;
+		}
 	}
 
 	&-message {

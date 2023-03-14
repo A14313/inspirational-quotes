@@ -73,9 +73,10 @@ const appendInformation = (parsedData) => {
 	quoteID.textContent = parsedData.id;
 	quoteCount.textContent = parsedData.quotesCount;
 
-	newQuoteBtn.innerHTML =
-		'<span class="btn__normal__title">Get new</span><i class="fa-solid fa-arrow-rotate-right"></i>';
+	// newQuoteBtn.innerHTML =
+	// '<span class="btn__normal__title">Get new</span><i class="fa-solid fa-arrow-rotate-right"></i>';
 	newQuoteBtn.classList.remove('loading-state');
+	speakBtn.disabled = false;
 	window.addEventListener('keydown', invokeShortcuts);
 };
 
@@ -86,8 +87,9 @@ const onError = (e) => {
 const getRandomQuote = () => {
 	// Hanggang hindi pa natin na fefetch ang api
 	// loading muna ang state ng button
-	newQuoteBtn.textContent = 'Loading...';
+	// newQuoteBtn.textContent = '...';
 	newQuoteBtn.classList.add('loading-state');
+	speakBtn.disabled = true;
 	window.removeEventListener('keydown', invokeShortcuts);
 	// ******
 

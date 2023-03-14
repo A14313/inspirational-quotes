@@ -18,15 +18,24 @@
 
 .btn__normal {
 	color: white;
+	.svgIcon {
+		fill: white;
+	}
 }
 
 .btn__normal--hollow {
 	color: var(--clr-gray-300);
+	.svgIcon {
+		fill: var(--clr-gray-300);
+	}
 }
 
 .btn__normal--hollow.active {
 	background-color: var(--clr-btn) !important;
 	color: white;
+	.svgIcon {
+		fill: white;
+	}
 }
 
 // Gawin mo tong hover na to sa hollow buttons
@@ -34,6 +43,10 @@
 .btn__normal--hollow:hover:not(:disabled) {
 	background-color: var(--clr-btn) !important;
 	color: white;
+
+	.svgIcon {
+		fill: white;
+	}
 }
 
 .btn__normal--solid {
@@ -43,6 +56,10 @@
 .btn__normal--solid:hover {
 	background-color: white !important;
 	color: var(--clr-gray-300);
+
+	.svgIcon {
+		fill: var(--clr-gray-300);
+	}
 }
 
 #showHintBtn {
