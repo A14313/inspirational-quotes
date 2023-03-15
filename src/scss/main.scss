@@ -158,6 +158,81 @@ body {
 	box-shadow: 4px 3px 10px 0 hsla(0, 0%, 40%, 0.5);
 }
 
+.btn-always-circle {
+	padding: 0.6em;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	aspect-ratio: 1 / 1;
+
+	@include mediaQuery(med) {
+		padding: 0.8em;
+
+		.svgIcon {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}
+
+.main {
+	min-height: 100dvh;
+	//fallback
+	min-height: 100vh;
+	width: 100%;
+	transition: width var(--transition-speed-slow) ease
+		var(--transition-delay-normal);
+	position: relative;
+
+	@include mediaQuery(med) {
+		width: 80%;
+		max-width: 1200px;
+		margin-inline: auto;
+	}
+
+	&.grid {
+		display: none;
+
+		@include mediaQuery(xsm) {
+			display: grid;
+			place-items: center;
+		}
+	}
+}
+
+.credits {
+	position: absolute;
+	top: 5%;
+	// border: 1px solid red;
+
+	text-align: center;
+	color: var(--clr-gray-300);
+
+	a {
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--clr-accent);
+		border: none;
+		outline: none;
+
+		&:hover {
+			opacity: 0.7;
+		}
+
+		&:focus-visible,
+		&:focus-visible {
+			border: 1px solid var(--clr-focus-state);
+		}
+	}
+
+	em {
+		font-style: normal;
+		color: var(--clr-gray-400);
+		font-weight: 500;
+	}
+}
+
 .card {
 	background-color: white;
 	width: 90%;
@@ -221,7 +296,7 @@ body {
 		}
 
 		@include mediaQuery(med) {
-			width: 90%;
+			width: 93%;
 		}
 	}
 
@@ -271,13 +346,39 @@ body {
 
 	.button-container {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-block-start: 0.7em;
+		transition: margin-block-start var(--transition-speed-normal) ease
+			var(--transition-delay-slow);
+
+		@include mediaQuery(sm) {
+			margin-block-start: 1em;
+		}
+
+		.svgIcon {
+			@include mediaQuery(sm) {
+				margin-inline-start: 0.3em;
+			}
+		}
+
+		.btn-always-circle .svgIcon {
+			margin-inline-start: 0em;
+		}
+	}
+
+	.button-socials {
+		display: flex;
 		justify-content: flex-end;
 		gap: 0.5em;
 		isolation: isolate;
+	}
 
-		.svgIcon {
-			margin-inline-start: 0.3em;
-		}
+	.button-functions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.5em;
+		isolation: isolate;
 	}
 
 	.copy-notif-div {
@@ -298,31 +399,6 @@ body {
 
 		&.show {
 			opacity: 1;
-		}
-	}
-}
-
-.main {
-	min-height: 100dvh;
-	//fallback
-	min-height: 100vh;
-	width: 100%;
-	transition: width var(--transition-speed-slow) ease
-		var(--transition-delay-normal);
-	position: relative;
-
-	@include mediaQuery(med) {
-		width: 80%;
-		max-width: 1200px;
-		margin-inline: auto;
-	}
-
-	&.grid {
-		display: none;
-
-		@include mediaQuery(xsm) {
-			display: grid;
-			place-items: center;
 		}
 	}
 }

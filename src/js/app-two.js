@@ -11,15 +11,19 @@ const closeBtn = document.querySelector('#closeBtn');
 const showHintBtn = document.querySelector('#showHintBtn');
 const copyNotifDiv = document.querySelector('#copyNotifDiv');
 
-const signature = `Copied from Inspirational Quotes Web app\nlink: https://a14313.github.io/inspirational-quotes/dist/`;
+const twitter = document.querySelector('#twitter');
+const facebook = document.querySelector('#facebook');
 
-// Prevent defaults for buttons
-[newQuoteBtn, copyBtn, speakBtn].forEach((el) => {
-	el.addEventListener('mousedown', (e) => {
-		e.preventDefault();
-		// I prevented the default, to remove the default focus after clicked
-	});
-});
+const signature = `Copied from Inspirational Quotes Web app\nlink: https://a14313.github.io/inspirational-quotes/dist/`;
+const preventedDefaultsButtons = [
+	twitter,
+	facebook,
+	newQuoteBtn,
+	copyBtn,
+	speakBtn,
+];
+const disabledButtons = [newQuoteBtn, speakBtn, twitter, facebook];
+
 //******************************* */
 
 //Shortcut keys
@@ -43,13 +47,49 @@ window.addEventListener('keydown', invokeShortcuts);
 
 //******************************* */
 
+// Global functions
+const disableButtons = () => {
+	disabledButtons.forEach((el) => {
+		el.disabled = true;
+	});
+};
+
+const enableButtons = () => {
+	disabledButtons.forEach((el) => {
+		el.disabled = false;
+	});
+};
+
+const whenFetchingDataFromApi = () => {
+	// Hanggang hindi pa natin na fefetch ang api
+	// loading muna ang state ng button
+	// newQuoteBtn.textContent = '...';
+	newQuoteBtn.classList.add('loading-state');
+	disableButtons();
+	window.removeEventListener('keydown', invokeShortcuts);
+};
+
+const whenDoneFetchingDataFromApi = () => {
+	newQuoteBtn.classList.remove('loading-state');
+	enableButtons();
+	window.addEventListener('keydown', invokeShortcuts);
+};
+
+// Prevent defaults for buttons
+preventedDefaultsButtons.forEach((el) => {
+	el.addEventListener('mousedown', (e) => {
+		e.preventDefault();
+		// I prevented the default, to remove the default focus after clicked
+	});
+});
+
 //This is for the processing of API and a randomQuote
 const processRandomQuote = (parsedData) => {
 	// Based sa structure ng API, Array of objects sya
 	// so ang nirereturn neto array of objects [{},{}]
 	const randomID = Math.floor(Math.random() * parsedData.length);
 	// Pang testing
-	// const randomID = 937;
+	// const randomID = 0;
 	if (parsedData[randomID].author === null) {
 		return {
 			quote: parsedData[randomID].text,
@@ -75,9 +115,8 @@ const appendInformation = (parsedData) => {
 
 	// newQuoteBtn.innerHTML =
 	// '<span class="btn__normal__title">Get new</span><i class="fa-solid fa-arrow-rotate-right"></i>';
-	newQuoteBtn.classList.remove('loading-state');
-	speakBtn.disabled = false;
-	window.addEventListener('keydown', invokeShortcuts);
+
+	whenDoneFetchingDataFromApi();
 };
 
 const onError = (e) => {
@@ -87,10 +126,7 @@ const onError = (e) => {
 const getRandomQuote = () => {
 	// Hanggang hindi pa natin na fefetch ang api
 	// loading muna ang state ng button
-	// newQuoteBtn.textContent = '...';
-	newQuoteBtn.classList.add('loading-state');
-	speakBtn.disabled = true;
-	window.removeEventListener('keydown', invokeShortcuts);
+	whenFetchingDataFromApi();
 	// ******
 
 	//Fetching api
@@ -131,8 +167,7 @@ const speak = () => {
 	utteranceAuthor.rate = 0.8;
 
 	speakBtn.classList.add('active');
-	speakBtn.disabled = true;
-	newQuoteBtn.disabled = true;
+	disableButtons();
 	window.removeEventListener('keydown', invokeShortcuts);
 
 	speechSynthesis.speak(utteranceQuote);
@@ -140,8 +175,7 @@ const speak = () => {
 		setTimeout(() => {
 			speechSynthesis.speak(utteranceAuthor);
 			speakBtn.classList.remove('active');
-			newQuoteBtn.disabled = false;
-			speakBtn.disabled = false;
+			enableButtons();
 			window.addEventListener('keydown', invokeShortcuts);
 		}, 500);
 	});
@@ -153,6 +187,15 @@ const speak = () => {
 copyBtn.addEventListener('click', copy);
 speakBtn.addEventListener('click', speak);
 newQuoteBtn.addEventListener('click', getRandomQuote);
+
+twitter.addEventListener('click', () => {
+	let url = `https://twitter.com/intent/tweet?url=${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`;
+	window.open(url, '_blank');
+});
+facebook.addEventListener('click', () => {
+	let url = `https://facebook.com/profile`;
+	window.open(url, '_blank');
+});
 
 //******************************* */
 //******************************* */
