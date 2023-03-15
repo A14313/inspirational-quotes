@@ -1,6 +1,6 @@
 {
 	"name": "inspirational-quotes",
-	"version": "1.6.3",
+	"version": "1.6.4",
 	"description": "",
 	"scripts": {
 		"start": "rm -rf dist/* && parcel src/*.html --open",
