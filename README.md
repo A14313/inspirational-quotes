@@ -13,7 +13,7 @@ Inspirational quotes using API
 -   SCSS
 -   Mobile-first workflow
 
-#### This is built without any framework.
+#### This is built without any framework ✨.
 
 ### Links
 
