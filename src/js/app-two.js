@@ -14,7 +14,8 @@ const copyNotifDiv = document.querySelector('#copyNotifDiv');
 const twitter = document.querySelector('#twitter');
 const facebook = document.querySelector('#facebook');
 
-const signature = `Copied from Inspirational Quotes Web app\nlink: https://a14313.github.io/inspirational-quotes/dist/`;
+const signature = `#inspirational #quotes #inspirify\n\nCopied from Inspirify\nlink: https://inspirify.netlify.app`;
+const twitterSignature = `Copied from https://inspirify.netlify.app`;
 const preventedDefaultsButtons = [
 	twitter,
 	facebook,
@@ -148,6 +149,7 @@ const copy = () => {
 	navigator.clipboard.writeText(
 		`${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`
 	);
+	console.log('Clicked copy');
 
 	copyNotifDiv.classList.add('show');
 	setTimeout(() => {
@@ -189,8 +191,9 @@ speakBtn.addEventListener('click', speak);
 newQuoteBtn.addEventListener('click', getRandomQuote);
 
 twitter.addEventListener('click', () => {
-	let url = `https://twitter.com/intent/tweet?url=${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`;
-	window.open(url, '_blank');
+	let url = `https://twitter.com/intent/tweet?url=${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${twitterSignature}`;
+	let encodedUrl = encodeURI(url);
+	window.open(encodedUrl, '_blank');
 });
 facebook.addEventListener('click', () => {
 	let url = `https://facebook.com/profile`;
