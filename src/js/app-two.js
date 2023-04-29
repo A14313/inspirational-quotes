@@ -1,3 +1,4 @@
+const cardContents = document.querySelector('.card__contents');
 const quoteParagraph = document.querySelector('#quote');
 const authorParagraph = document.querySelector('#author');
 const quoteID = document.querySelector('#quoteID');
@@ -16,13 +17,7 @@ const facebook = document.querySelector('#facebook');
 
 const signature = `#inspirational #quotes #inspirify\n\nCopied from Inspirify\nlink: https://inspirify.netlify.app`;
 const twitterSignature = `Copied from https://inspirify.netlify.app`;
-const preventedDefaultsButtons = [
-	twitter,
-	facebook,
-	newQuoteBtn,
-	copyBtn,
-	speakBtn,
-];
+const preventedDefaultsButtons = [twitter, facebook, newQuoteBtn, copyBtn, speakBtn];
 const disabledButtons = [newQuoteBtn, speakBtn, twitter, facebook];
 
 //******************************* */
@@ -146,9 +141,7 @@ getRandomQuote();
 
 // Copy button function
 const copy = () => {
-	navigator.clipboard.writeText(
-		`${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`
-	);
+	navigator.clipboard.writeText(`${quoteParagraph.textContent}\n\n--${authorParagraph.textContent}\n\n${signature}`);
 	console.log('Clicked copy');
 
 	copyNotifDiv.classList.add('show');

@@ -61,13 +61,8 @@ body {
 	align-items: center;
 
 	position: relative;
-	transition: box-shadow var(--transition-speed-slow) ease,
-		opacity var(--transition-speed-normal) ease,
-		border var(--transition-speed-normal) ease,
-		background-color var(--transition-speed-normal) ease,
-		color var(--transition-speed-normal) ease,
-		border-radius var(--transition-speed-normal) ease,
-		padding var(--transition-speed-normal) ease;
+	transition: box-shadow var(--transition-speed-slow) ease, opacity var(--transition-speed-normal) ease, border var(--transition-speed-normal) ease,
+		background-color var(--transition-speed-normal) ease, color var(--transition-speed-normal) ease, border-radius var(--transition-speed-normal) ease, padding var(--transition-speed-normal) ease;
 
 	border-radius: var(--border-radius-circle);
 	padding: 0.7em;
@@ -83,9 +78,7 @@ body {
 		width: 18px;
 		height: 18px;
 		object-fit: cover;
-		transition: fill var(--transition-speed-normal) ease,
-			width var(--transition-speed-normal) ease,
-			height var(--transition-speed-normal) ease;
+		transition: fill var(--transition-speed-normal) ease, width var(--transition-speed-normal) ease, height var(--transition-speed-normal) ease;
 
 		@include mediaQuery(sm) {
 			width: 16px;
@@ -97,10 +90,7 @@ body {
 		opacity: 0;
 		visibility: hidden;
 		position: absolute;
-		transition: opacity var(--transition-speed-normal) ease
-				var(--transition-delay-normal),
-			position var(--transition-speed-normal) ease
-				var(--transition-delay-normal);
+		transition: opacity var(--transition-speed-normal) ease var(--transition-delay-normal), position var(--transition-speed-normal) ease var(--transition-delay-normal);
 		@include mediaQuery(sm) {
 			opacity: 1;
 			visibility: visible;
@@ -181,8 +171,7 @@ body {
 	//fallback
 	min-height: 100vh;
 	width: 100%;
-	transition: width var(--transition-speed-slow) ease
-		var(--transition-delay-normal);
+	transition: width var(--transition-speed-slow) ease var(--transition-delay-normal);
 	position: relative;
 
 	@include mediaQuery(med) {
@@ -260,12 +249,8 @@ body {
 		z-index: -1;
 		pointer-events: none;
 		transform: translate(-5px, -10px);
-		transition: transform var(--transition-speed-slow) ease
-				var(--transition-delay-normal),
-			font-size var(--transition-speed-slow) ease
-				var(--transition-delay-normal),
-			opacity var(--transition-speed-slow) ease
-				var(--transition-delay-normal);
+		transition: transform var(--transition-speed-slow) ease var(--transition-delay-normal), font-size var(--transition-speed-slow) ease var(--transition-delay-normal),
+			opacity var(--transition-speed-slow) ease var(--transition-delay-normal);
 
 		@include mediaQuery(sm) {
 			font-size: 60px;
@@ -287,8 +272,8 @@ body {
 		gap: 1em;
 		width: 100%;
 
-		transition: width var(--transition-speed-slow) ease
-			var(--transition-delay-fast);
+		animation: var(--transition-speed-normal) fadeIn forwards;
+		transition: width var(--transition-speed-slow) ease var(--transition-delay-fast);
 
 		@include mediaQuery(sm) {
 			margin-inline: auto;
@@ -303,8 +288,7 @@ body {
 	.quote-container {
 		#quote {
 			font-size: var(--fs-600);
-			transition: font-size var(--transition-speed-normal) ease
-				var(--transition-delay-normal);
+			transition: font-size var(--transition-speed-normal) ease var(--transition-delay-normal);
 
 			@include mediaQuery(med) {
 				font-size: var(--fs-700);
@@ -322,8 +306,7 @@ body {
 		#author {
 			font-style: normal;
 			font-size: var(--fs-400);
-			transition: font-size var(--transition-speed-normal) ease
-				var(--transition-delay-normal);
+			transition: font-size var(--transition-speed-normal) ease var(--transition-delay-normal);
 
 			&::before {
 				content: '--';
@@ -349,8 +332,7 @@ body {
 		justify-content: space-between;
 		align-items: center;
 		margin-block-start: 0.7em;
-		transition: margin-block-start var(--transition-speed-normal) ease
-			var(--transition-delay-slow);
+		transition: margin-block-start var(--transition-speed-normal) ease var(--transition-delay-slow);
 
 		@include mediaQuery(sm) {
 			margin-block-start: 1em;
@@ -409,8 +391,7 @@ body {
 		bottom: 2%;
 		right: 0;
 		width: 100%;
-		transition: bottom var(--transition-delay-normal) ease
-			var(--transition-delay-normal);
+		transition: bottom var(--transition-delay-normal) ease var(--transition-delay-normal);
 
 		@include mediaQuery(sm) {
 			bottom: 5%;
@@ -425,8 +406,7 @@ body {
 		#showHintBtn {
 			opacity: 0;
 			pointer-events: none;
-			transition: opacity var(--transition-speed-normal) ease
-				var(--transition-delay-normal);
+			transition: opacity var(--transition-speed-normal) ease var(--transition-delay-normal);
 
 			text-transform: uppercase;
 			font-weight: 500;
@@ -450,14 +430,8 @@ body {
 		opacity: 0;
 		pointer-events: none;
 		transform: translateX(-5%);
-		transition: opacity var(--transition-speed-normal) ease
-				var(--transition-delay-normal),
-			transform var(--transition-speed-normal) ease
-				var(--transition-delay-normal),
-			padding var(--transition-speed-normal) ease
-				var(--transition-delay-fast),
-			right var(--transition-speed-normal) ease
-				var(--transition-delay-fast);
+		transition: opacity var(--transition-speed-normal) ease var(--transition-delay-normal), transform var(--transition-speed-normal) ease var(--transition-delay-normal),
+			padding var(--transition-speed-normal) ease var(--transition-delay-fast), right var(--transition-speed-normal) ease var(--transition-delay-fast);
 
 		@include mediaQuery(sm) {
 			padding: 1.3em 1em;
@@ -548,4 +522,24 @@ body {
 			border-radius: var(--default-border-radius);
 		}
 	}
+}
+
+// Working on this
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.fadeIn {
+	animation: 1000ms fadeIn;
+	animation-fill-mode: both;
+	// animation-iteration-count: infinite;
+	// animation-direction: alternate-reverse;
+	// animation-play-state: paused;
+	// animation-delay: 3000ms;
 }
